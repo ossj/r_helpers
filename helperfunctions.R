@@ -1,5 +1,6 @@
 colpairs_to_list <-  function(data, column = 'col') {
-  data %>% as.data.frame() %>%
+  data |> 
+    as.data.frame()  |> 
     split(., .[, column]) %>%
     lapply(., function(x) x[, setdiff(names(x), column)])
 }
@@ -22,7 +23,7 @@ add_missing_columns <- function(data, column_names, values_fill = 0) {
       cat("New columns created:", paste0(make_vars, collapse = "\n"), "\n")
     }
   for (i in make_vars) {
-    data %<>% mutate("{i}" := values_fill)
+    data <- data |> dplyr::mutate("{i}" := values_fill)
   }
 
   return(data)

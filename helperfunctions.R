@@ -1,7 +1,7 @@
 colpairs_to_list <-  function(data, column = 'col') {
   data |> 
     as.data.frame()  |> 
-    split(., .[, column]) %>%
+    split(., .[, column]) |>
     lapply(., function(x) x[, setdiff(names(x), column)])
 }
 

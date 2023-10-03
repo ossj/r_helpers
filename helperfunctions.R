@@ -13,6 +13,16 @@ qf <- function(x, ...) {
            base = sum(n))
 }
 
+try_catch <- function(EXPR) {
+  tryCatch(expr = {
+    EXPR
+  }, error = function(e){
+    NULL
+    message("An error occured here, returning NULL")
+  })
+}
+
+
 add_missing_columns <- function(data, column_names, values_fill = 0) {
 
   make_vars <- column_names[!column_names %in% colnames(data)]
